@@ -73,7 +73,7 @@ defmodule Toru.Assets do
   @spec base_svg :: String.t()
   def base_svg(),
     do: """
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="{{width}}" height="{{height}}" style="overflow:hidden;border-radius:{{border_radius}}px;">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="{{width}}" height="{{height}}" style="overflow:hidden;border-radius:{{border_radius}}px; stroke: {{border_color}}">
       <foreignObject width="{{width}}" height="{{height}}">
         <style>.bars{position: relative;display: inline-flex;justify-content: space-between;width: 12px;height: 9px;margin-right: 5px;}.bar{width: 2.5px;height: 100%;background-color: {{theme["accent"]}};border-radius: 10000px;transform-origin: bottom;animation:bounce 0.8s ease infinite alternate;content:'';}.bar:nth-of-type(2){animation-delay:-0.8s;}.bar:nth-of-type(3){animation-delay:-1.2s;}@keyframes bounce{0%{transform:scaleY(0.1);}100%{transform:scaleY(1);}}.bgBlur{transform:translate(-10%, -30%);z-index:0;backdrop-filter:blur(18px);filter:blur(18px);background-repeat:no-repeat;position:absolute;top:0;left:0;aspect-ratio:1/1;width:calc({{width}}px + 100px);}:not(.bgBlur){z-index:2;}</style>
         <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:center;width:100%;height:100%;border-radius:{{border_radius}}px;background-color:{{theme["background"]}};color:{{theme["text"]}};padding:0 14px;box-sizing:border-box; overflow:clip;">

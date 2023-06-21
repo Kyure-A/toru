@@ -70,6 +70,9 @@ The width of the borders can be specified (or removed by setting to '0') with `b
 
 <a href="https://last.fm/user/kiosion" target="_blank"><img src="https://toru.kio.dev/api/v1/kiosion?theme=dracula&border_width=0" alt="Last.fm Activity" width="380px" /></a>
 
+#### Border color
+The border color of the embed can be specified as a hex string width `border_color`
+
 #### Custom SVG asset
 You can alternativly specify a custom SVG asset with `svg_url=<str>`. Toru will fill in the artist name, track title, album title, and cover art resource using the following template strings:
 - Cover art -> `${cover_art}` (should be the 'src' attr, as it's sent as a b64-encoded image string)

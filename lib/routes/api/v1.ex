@@ -27,7 +27,8 @@ defmodule Api.V1 do
               :art_radius => any,
               :artist => binary,
               :blur => any,
-              :border_radius => any,
+	      :border_color => any,
+	      :border_radius => any,
               :border_width => any,
               :cover_art => any,
               :mime_type => any,
@@ -59,7 +60,8 @@ defmodule Api.V1 do
           "0" -> 0
           0 -> 0
           _ -> 4
-        end
+        end,
+      :border_color => params.border_color
     }
 
     values =
@@ -133,15 +135,16 @@ defmodule Api.V1 do
   @spec default_params() :: map()
   defp default_params,
     do: %{
-      :theme => "light",
-      :border_width => "1.6",
-      :border_radius => "22",
-      :album_radius => "18",
-      :svg_url => nil,
-      :url => nil,
-      :blur => nil,
-      :res => "svg",
-      :cover_size => "large"
+	  :theme => "light",
+	  :border_color => Map.get(@themes, default_params.theme, @themes["light"]) |> Map.get("background", @themes["light"]["background"]), # match the theme color (background color)
+	  :border_width => "1.6",
+	  :border_radius => "22",
+	  :album_radius => "18",
+	  :svg_url => nil,
+	  :url => nil,
+	  :blur => nil,
+	  :res => "svg",
+	  :cover_size => "large"
     }
 
   defp start_cover_art_task(params, recent_track) do
@@ -228,8 +231,9 @@ defmodule Api.V1 do
           :art_radius => params.album_radius,
           :border_radius => params.border_radius,
           :border_width => params.border_width,
-          :blur => params.blur
-        })
+          :blur => params.blur,
+	  :border_color => params.border_color
+	})
       else
         _ ->
           svg
@@ -325,8 +329,9 @@ defmodule Api.V1 do
                 :art_radius => params.album_radius,
                 :border_radius => params.border_radius,
                 :border_width => params.border_width,
-                :blur => params.blur
-              })
+                :blur => params.blur,
+		:border_color => params.border_color
+		})
             )
 
           _ ->
@@ -349,9 +354,10 @@ defmodule Api.V1 do
             :border_radius => params.border_radius,
             :art_radius => params.album_radius,
             :border_width => params.border_width,
-            :blur => params.blur
-          })
-        )
+            :blur => params.blur,
+	    :border_color => params.border_color
+	})
+      )
     end
   end
 
